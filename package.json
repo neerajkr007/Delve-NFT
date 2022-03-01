@@ -1,0 +1,19 @@
+{
+  "name": "nft-project",
+  "version": "1.0.0",
+  "description": "an nft database website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Neeraj_kr",
+  "license": "ISC",
+  "dependencies": {
+    "api": "^4.2.0",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.3",
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.15"
+  }
+}
