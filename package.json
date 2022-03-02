@@ -11,9 +11,9 @@
   "dependencies": {
     "api": "^4.2.0",
     "express": "^4.17.3",
+    "googleapis": "^95.0.0",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
-    "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15"
   }
 }
