@@ -41,7 +41,7 @@ async function setUpGoogle()
     {
         'id': "file8",
         'type': "web_hook",
-        'address': `https://${hostName}.herokuapp.com/driveValueChanged`,
+        'address': `https://${hostName}/driveValueChanged`,
     }
     googleDrive.files.watch({fileId:spreadsheetId, requestBody:reqParam}, (err, response) => {
         if (err) {
