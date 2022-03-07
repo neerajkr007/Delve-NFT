@@ -166,7 +166,6 @@ app.use(express.static(__dirname + '/public'));
 
 serv.listen(process.env.PORT || 3000, async()=>{
     console.log("server running at ");
-    console.log(process.env)
     try{
         await mongoose.connect(
             URI, {

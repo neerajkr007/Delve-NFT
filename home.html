@@ -23,18 +23,15 @@
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
+	    <ul class="navbar-nav me-auto">
 	      <li class="nav-item active">
 	        <a class="nav-link text-white" href="">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-	    	<!-- <li class="nav-item active">
-	    		<a class="nav-link text-white mr-3" href="signup"><span><i class="fas fa-user-plus"></i></span> Sign Up</a>
-	    	</li>
+	    <ul class="navbar-nav navbar-right">
 	    	<li class="nav-item active">
-	    		<a class="nav-link text-white" href="signin"><span><i class="fas fa-sign-in-alt"></i></span> Login</a>
-	    	</li> -->
+	    		<button type="button" class="nav-link text-white btn" onclick="tryLogin()"><span><i class="fas fa-sign-in-alt"></i></span>Login</button>
+	    	</li>
 	    </ul>
 	  </div>
 	</nav>
@@ -50,7 +47,7 @@
         </div>
 	</div>
 	<script>
-		$(document).ready(autoCompleteSearch);
+		$(document).ready(documentLoaded())
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
