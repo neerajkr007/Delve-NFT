@@ -1,15 +1,15 @@
 {
-  "name": "nft-project",
+  "name": "delve-nft",
   "version": "1.0.0",
   "description": "an nft database website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon"
   },
   "author": "Neeraj_kr",
   "license": "ISC",
   "dependencies": {
-    "api": "^4.2.0",
+    "doublemetaphone": "^0.1.2",
     "express": "^4.17.3",
     "googleapis": "^95.0.0",
     "mongodb": "^4.4.0",
