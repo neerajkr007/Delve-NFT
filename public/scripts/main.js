@@ -5,7 +5,7 @@ function autoCompleteSearch()
     $("#NFTInputField").autocomplete({
         source: async function(req, res){
             console.log(window.location.hostname);
-            let data = await fetch(`http://${window.location.hostname}/search?term=${req.term}`)
+            let data = await fetch(`https://${window.location.hostname}/search?term=${req.term}`)
             .then(results => results.json())
             .then(results => results.map(result =>{
                 return {label: result.name, value:result.name, id: result._id};
