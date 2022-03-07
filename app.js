@@ -39,7 +39,7 @@ async function setUpGoogle()
 
     var reqParam = 
     {
-        'id': "file8",
+        'id': "file9",
         'type': "web_hook",
         'address': `https://${hostName}/driveValueChanged`,
     }
@@ -50,7 +50,7 @@ async function setUpGoogle()
         else
         {
             testCallback()
-            //console.log(response);
+            console.log("watching for changes on file " + spreadsheetId + " at " + reqParam.address);
         }
       })
     
@@ -142,7 +142,7 @@ app.get('/search', async (req, res) =>
                         "query":`${req.query.term}`,
                         "path":"name",
                         "fuzzy":{
-                            "maxEdits": 2,
+                            "maxEdits": 1,
                             "prefixLength": 1,
                         }
                     }
