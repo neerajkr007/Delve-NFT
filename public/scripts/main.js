@@ -52,6 +52,7 @@ function tryLogin()
 
 async function loginWithMetaMask()
 {
+    console.log(window.ethereum.selectedAddress)
     const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
     .catch((e) =>{
         console.log(e.message)
@@ -62,4 +63,5 @@ async function loginWithMetaMask()
         return
     }
     console.log(" wallet address = " + accounts[0])
+    
 }

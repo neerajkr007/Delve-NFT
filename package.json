@@ -9,11 +9,13 @@
   "author": "Neeraj_kr",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "doublemetaphone": "^0.1.2",
     "express": "^4.17.3",
     "googleapis": "^95.0.0",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1"
   }
 }

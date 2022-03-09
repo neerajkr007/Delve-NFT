@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 	<script src="/scripts/main.js"></script>
+	<script src="/scripts/data.js"></script>
     <title>Welcome</title>
 </head>
 <body >
@@ -17,7 +18,7 @@
 
 	
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F96361;">
-	  <a class="navbar-brand text-white" href="">ProtoType</a>
+	  <a class="navbar-brand text-white" href="/">ProtoType</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -25,7 +26,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav me-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link text-white" href="">Home <span class="sr-only">(current)</span></a>
+	        <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	    </ul>
 	    <ul class="navbar-nav navbar-right">
@@ -41,10 +42,13 @@
             <h1 class="display-3">Welcome to the ProtoType !</h1>
             <h1 class="display-4">search for a NFT below</h1>
         </div>
-        <div class="text-center mt-10">
+        <div class="text-center mt-5">
 			<label for="NFTInputField"> NFT: </label>
 			<input id="NFTInputField" placeholder="this is a nft name">
         </div>
+		<div class="text-center mt-2">
+			<button type="button" class="btn btn-primary" onclick="tryGetDetails()">Get Details</button>
+		</div>
 	</div>
 	<script>
 		$(document).ready(documentLoaded())

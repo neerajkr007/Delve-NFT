@@ -16,8 +16,10 @@ var hostName;
 // gapi stuff
 const { google } = require('googleapis');
 
+require("dotenv").config()
+var googleCred = JSON.parse(process.env.GOOGLE_API_KEY)
 const auth = new google.auth.GoogleAuth({
-    keyFile: "./credentials.json",
+    credentials: googleCred,
     scopes: [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive"]
@@ -122,7 +124,6 @@ async function writeFromGSheet()
 app.get('/', (req, res) =>
 {
     hostName = req.headers.host;
-    console.log(hostName);
     res.sendFile(__dirname + '/home.html');
 });
 
@@ -157,9 +158,8 @@ app.get('/search', async (req, res) =>
     }
 })
 
-app.get('/test', (req, res) =>
-{
-    console.log("test");
+app.get('/details', (req, res)=>{
+    res.sendFile(__dirname + '/NFT.html');
 });
 
 app.use(express.static(__dirname + '/public'));
