@@ -45,16 +45,16 @@ async function setUpGoogle()
         'type': "web_hook",
         'address': `https://${hostName}/driveValueChanged`,
     }
-    googleDrive.files.watch({fileId:spreadsheetId, requestBody:reqParam}, (err, response) => {
-        if (err) {
-          console.log(`Drive API returned ${err}`)
-        }
-        else
-        {
-            testCallback()
-            console.log("watching for changes on file " + spreadsheetId + " at " + reqParam.address);
-        }
-      })
+    // googleDrive.files.watch({fileId:spreadsheetId, requestBody:reqParam}, (err, response) => {
+    //     if (err) {
+    //       console.log(`Drive API returned ${err}`)
+    //     }
+    //     else
+    //     {
+    //         testCallback()
+    //         console.log("watching for changes on file " + spreadsheetId + " at " + reqParam.address);
+    //     }
+    //   })
     
 
 
@@ -188,6 +188,32 @@ serv.listen(process.env.PORT || 3000, async()=>{
     }
 }); 
 
+var io = require('socket.io')(serv,{});
+
+
+var openSeaCred = JSON.parse(process.env.openSeaCred)
+
+io.on('connection', function(socket){
+    console.log("socket connected")
+
+    socket.on("getContractData", async (contractName, name)=>{
+        var options = { method: 'GET', headers: { 'X-API-KEY': openSeaCred.key } };
+
+        fetch('https://api.opensea.io/api/v1/asset/'+ contractName + '/1/?include_orders=false', options)
+            .then(response => response.json())
+            .then(response => 
+                {
+                    //console.log(response)
+                    //console.log(response.name)
+                    //console.log(response.image_preview_url)
+                    socket.emit("gotOpenSeaData", response.image_preview_url)
+                })
+            .catch(err => console.error(err));
+        let nftData = await testDBschema.findOne({"name": name, "contract_name": contractName}) 
+        socket.emit("gotMongoData", nftData)
+    })
+
+});
 
 async function addData(DataArr, i)
 {
@@ -219,21 +245,56 @@ async function addData(DataArr, i)
     addData(sheetData, i)
 }
 
-function test()
+const Web3 = require('web3')
+const openSea = require('opensea-js');
+const testDBschema = require('./testDBschema');
+
+async function test() 
 {
-//     var test = "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb";
-//     fetch(`https://api.opensea.io/api/v1/asset/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/1/?include_orders=true`)
-//     .then(res => console.log(res))//res.json())
-//   .then(data => console.log(data));
+    const options = { method: 'GET', headers: { 'X-API-KEY': '14818ff18ffc4f468629444a866374ea' } };
+
+    fetch('https://api.opensea.io/api/v1/asset/0xb194f007c8cf2fa0e073385af2a26edf6b6b7d50/2/?include_orders=false', options)
+        .then(response => response.json())
+        .then(response => 
+            {
+                console.log(response.name)
+                console.log(response.image_preview_url)
+            })
+        .catch(err => console.error(err));
+
+    // npm page docs way (working)
+    {
+        // const provider = new Web3.providers.HttpProvider('https://mainnet.infura.io')
+
+        // const seaport = new openSea.OpenSeaPort(provider, {
+        //     networkName: openSea.Network.Main,
+        //     apiKey: '14818ff18ffc4f468629444a866374ea'
+        // })
+
+        // const asset = await seaport.api.getAsset({
+        //     tokenAddress: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
+        //     tokenId: '1',
+        // }).then((res) => {
+        //     console.log(res)
+        // })
+    }
 
 
-sdk['retrieving-a-single-asset']({
-    include_orders: 'true',
-    asset_contract_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
-    token_id: '1'
-  })
-    .then(res => console.log(res))
-    .catch(err => console.error(err));
+    // the docs way (not working)
+    {
+        // const sdk = require('api')('@opensea/v1.0#54d5pd7l38yyb63');
+
+        // sdk['retrieving-a-single-asset']({
+        //     'X-API-KEY': '14818ff18ffc4f468629444a866374ea',
+        //     include_orders: 'false',
+        //     asset_contract_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb',
+        //     token_id: '1'
+        // })
+        //     .then(res => console.log(res))
+        //     .catch(err => console.error(err));
+    }
 }
+
+//test()
 
 

@@ -6,8 +6,20 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" integrity="sha512-iqRVtNB+t9O+epcgUTIPF+nklypcR23H1yR1NFM9kffn6/iBhZ9bTB6oKLaGMv8JE9UgjcwfBFg/eHC/VMws+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="/scripts/data.js"></script>
-    <title>Details</title>
+    <script src="/scripts/main.js"></script>
+	<!-- <script src="/scripts/data.js"></script> -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KNX2X7H65"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-9KNX2X7H65');
+	</script>
+	<title>Details</title>
 </head>
 <body >
 	
@@ -37,17 +49,17 @@
 	</nav>
 
 	<div class= "container mt-5">
-        <!-- <div id="banner" class="mt-10 text-center padding-top-lg padding-bottom-lg banner-bg" >
-            <h1 class="display-3">Welcome to the ProtoType !</h1>
-            <h1 class="display-4">search for a NFT below</h1>
-        </div>
         <div class="text-center mt-10">
-			<label for="NFTInputField"> NFT: </label>
+			<label for="NFTInputField"> search another NFT: </label>
 			<input id="NFTInputField" placeholder="this is a nft name">
-        </div> -->
+			<button type="button" class="btn btn-primary" onclick="tryGetDetails()">go</button>
+        </div>
+		<div class="mt-5">
+			<img src="" id="nftImage">
+		</div>
 	</div>
 	<script>
-		$(document).ready()
+		$(document).ready(onPageLoaded())
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
