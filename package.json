@@ -9,6 +9,7 @@
   "author": "Neeraj_kr",
   "license": "ISC",
   "dependencies": {
+    "api": "^4.5.1",
     "dotenv": "^16.0.0",
     "doublemetaphone": "^0.1.2",
     "express": "^4.17.3",
@@ -16,6 +17,7 @@
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
     "nodemon": "^2.0.15",
+    "opensea-js": "^3.0.4",
     "socket.io": "^4.4.1"
   }
 }

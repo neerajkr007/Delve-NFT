@@ -1,14 +1,20 @@
+const socket = io.connect();
 
-function tryGetDetails()
+function onPageLoaded()
 {
-    if(!window.ethereum)
-    {
-        alert("MetaMask not installed");
-        return;
-    }
-    if(!window.ethereum.selectedAddress)
-    {
-        alert("please login with metamask to continue");
-    }
-    location.href = "/details";
+    var contractName = new URLSearchParams(window.location.search).get("contract");
+    var name = new URLSearchParams(window.location.search).get("name");
+    console.log(contractName)
+    autoCompleteSearch();
+    socket.emit("getContractData", contractName, name);
 }
+
+socket.on("gotOpenSeaData", (link)=>{
+    console.log(link)
+    document.getElementById("nftImage").setAttribute("src", link)
+})
+
+socket.on("gotMongoData", (data)=>{
+    console.log(data)
+})
+

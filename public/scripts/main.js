@@ -1,6 +1,5 @@
 var hostName = ""
 
-
 function documentLoaded()
 {
     hostName = window.location.hostname;
@@ -17,6 +16,7 @@ function documentLoaded()
     autoCompleteSearch()
 }
 
+var topSearchResult
 
 function autoCompleteSearch()
 {
@@ -27,18 +27,22 @@ function autoCompleteSearch()
             let data = await fetch(`${hostName}/search?term=${req.term}`)
             .then(results => results.json())
             .then(results => results.map(result =>{
-                return {label: result.name, value:result.name, id: result._id};
+                return {label: result.name, value:result.name, data:result};
             }));
+            topSearchResult = data[0];
             res(data.slice(0, 5));
         },
         minLeangth: 1,
         select : function(event, ui)
         {
-            console.log(ui.item);
+            console.log("selected ?");
+            console.log(ui.item.data.contract_name);
+            topSearchResult = ui.item.data;
         }
     })
 }
 
+window.yolo = "hey dude";
 
 function tryLogin()
 {
@@ -64,4 +68,21 @@ async function loginWithMetaMask()
     }
     console.log(" wallet address = " + accounts[0])
     
+}
+
+function tryGetDetails()
+{
+    if(!window.ethereum)
+    {
+        alert("MetaMask not installed");
+        return;
+    }
+    if(!window.ethereum.selectedAddress)
+    {
+        alert("please login with metamask to continue");
+        return;
+    }
+
+    location.href = "/details?name=" + topSearchResult.name + "&contract=" + topSearchResult.contract_name;
+
 }
